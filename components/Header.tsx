@@ -1,11 +1,33 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { createClient } from '@/lib/supabase'
+import { Profile } from '@/lib/supabase'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [profile, setProfile] = useState<Profile | null>(null)
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (user) {
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single()
+        
+        setProfile(profileData)
+      }
+    }
+
+    getProfile()
+  }, [])
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-100">
@@ -61,11 +83,25 @@ export default function Header() {
               Sertifikasi
             </Link>
             <Link 
+              href="/blog" 
+              className="text-gray-700 hover:text-blue-600 px-4 py-2 text-base font-medium transition-colors"
+            >
+              Blog
+            </Link>
+            <Link 
               href="/kontak" 
               className="text-gray-700 hover:text-blue-600 px-4 py-2 text-base font-medium transition-colors"
             >
               Kontak
             </Link>
+            {profile?.role === 'admin' && (
+              <Link 
+                href="/admin" 
+                className="text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-4 py-2 text-base font-medium transition-colors rounded-lg"
+              >
+                Admin
+              </Link>
+            )}
           </nav>
 
           {/* Search Icon */}
@@ -127,12 +163,28 @@ export default function Header() {
                 Sertifikasi
               </Link>
               <Link 
+                href="/blog" 
+                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link 
                 href="/kontak" 
-                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
+                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Kontak
               </Link>
+              {profile?.role === 'admin' && (
+                <Link 
+                  href="/admin" 
+                  className="text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 block px-3 py-2 text-base font-medium rounded-lg mx-3 my-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Admin Dashboard
+                </Link>
+              )}
             </div>
           </div>
         )}

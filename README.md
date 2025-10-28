@@ -29,7 +29,6 @@ akademi-profesional-indonesia/
 │   ├── page.tsx           # Homepage
 │   ├── sitemap.ts         # Dynamic sitemap
 │   ├── robots.ts          # Robots.txt
-│   ├── manifest.ts        # PWA manifest
 │   ├── pelatihan/         # Training page
 │   ├── jasa-aplikasi/     # Custom apps page
 │   ├── sertifikasi/       # Certification page
