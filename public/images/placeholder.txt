@@ -1,0 +1,38 @@
+# Placeholder Images Directory
+
+This directory should contain the following images for the website:
+
+## Hero Images (1200x800px recommended)
+- hero-1.jpg - Main hero image with professional business theme
+- hero-2.jpg - Training/education theme
+- hero-3.jpg - Technology/custom apps theme  
+- hero-4.jpg - Certification/credentials theme
+
+## Service Images (400x300px recommended)
+- service-pelatihan.jpg - Training/education setting
+- service-aplikasi.jpg - Software development/technology
+- service-sertifikasi.jpg - Professional certification/credentials
+
+## Social Media Images (1200x630px)
+- og-image.jpg - Main Open Graph image for social sharing
+- pelatihan-og.jpg - Open Graph image for training page
+- jasa-aplikasi-og.jpg - Open Graph image for custom apps page
+- sertifikasi-og.jpg - Open Graph image for certification page
+- tentang-kami-og.jpg - Open Graph image for about page
+- kontak-og.jpg - Open Graph image for contact page
+
+## Favicon and Icons
+- favicon.ico - Main favicon
+- favicon-16x16.png - 16x16 favicon
+- favicon-32x32.png - 32x32 favicon
+- apple-touch-icon.png - 180x180 Apple touch icon
+- android-chrome-192x192.png - 192x192 Android icon
+- android-chrome-512x512.png - 512x512 Android icon
+
+## Logo
+- logo.png - Main logo for the website
+
+For development purposes, you can use placeholder services like:
+- https://via.placeholder.com/1200x800/2563eb/ffffff?text=Hero+Image+1
+- https://via.placeholder.com/400x300/60a5fa/ffffff?text=Service+Image
+- https://via.placeholder.com/1200x630/2563eb/ffffff?text=Open+Graph+Image
