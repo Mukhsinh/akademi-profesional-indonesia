@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import ChatWidget from "@/components/ChatWidget";
+import SupabaseErrorHandler from "@/components/SupabaseErrorHandler";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   title: {
@@ -129,17 +132,27 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <meta name="theme-color" content="#2563eb" />
+        {/* Inject public envs for client fallback */}
+        <meta name="x-supabase-url" content={process.env.NEXT_PUBLIC_SUPABASE_URL || ''} />
+        <meta name="x-supabase-anon-key" content={process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__PUBLIC_ENV = {
+              NEXT_PUBLIC_SUPABASE_URL: ${JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_URL || '')},
+              NEXT_PUBLIC_SUPABASE_ANON_KEY: ${JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '')},
+              NEXT_PUBLIC_SITE_URL: ${JSON.stringify(process.env.NEXT_PUBLIC_SITE_URL || '')}
+            };`
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
-        <Header />
-        <main className="min-h-screen">
+      <body className={`${montserrat.className} antialiased`}>
+        <SupabaseErrorHandler>
           {children}
-        </main>
-        <ChatWidget />
+        </SupabaseErrorHandler>
       </body>
     </html>
   );

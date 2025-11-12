@@ -17,6 +17,11 @@ export default function LoginForm() {
     setError('')
 
     const supabase = createClient()
+    if (!supabase) {
+      setError('Konfigurasi Supabase belum tersedia. Coba lagi nanti.')
+      setLoading(false)
+      return
+    }
     
     const { error } = await supabase.auth.signInWithPassword({
       email,

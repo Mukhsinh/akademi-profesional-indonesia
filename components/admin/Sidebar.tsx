@@ -22,6 +22,7 @@ export default function Sidebar({ profile }: SidebarProps) {
 
   const navigation = [
     { name: 'Dashboard', href: '/admin', icon: '📊' },
+    { name: 'Kelola Konten', href: '/admin/content', icon: '🎨' },
     { name: 'Artikel', href: '/admin/articles', icon: '📝' },
     { name: 'Profil', href: '/admin/profile', icon: '👤' },
   ]

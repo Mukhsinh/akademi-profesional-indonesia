@@ -214,6 +214,32 @@ npm run start
 2. Verify domain di Search Console
 3. Monitor performance metrics
 
+## 🔧 Troubleshooting
+
+### Error: "Failed to fetch"
+Error ini terjadi ketika environment variables Supabase belum dikonfigurasi.
+
+**Solusi:**
+1. Buat file `.env.local` di root project
+2. Tambahkan credentials Supabase:
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   ```
+3. Restart development server
+
+### Check Environment Configuration
+```bash
+npm run check-env
+```
+
+### Get Supabase Credentials
+1. Buka [Supabase Dashboard](https://supabase.com/dashboard)
+2. Pilih project Anda
+3. Pergi ke **Settings** > **API**
+4. Copy **Project URL** dan **anon public** key
+
 ## 🔧 Customization
 
 ### Colors
