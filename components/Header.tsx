@@ -25,7 +25,9 @@ export default function Header() {
     const supabase = createClient()
     if (!supabase) return
 
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    const loadProfile = async () => {
+      const { data } = await supabase.auth.getUser()
+      const user = data?.user
       if (!user) return
       const { data: profileData } = await supabase
         .from('profiles')
@@ -33,7 +35,9 @@ export default function Header() {
         .eq('id', user.id)
         .single()
       setProfile(profileData)
-    })
+    }
+
+    loadProfile()
   }, [])
 
   useEffect(() => {

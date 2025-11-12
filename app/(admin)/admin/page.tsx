@@ -1,6 +1,8 @@
 import StatsCard from "@/components/admin/StatsCard";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboard() {
   const supabase = await createServerSupabaseClient();
 

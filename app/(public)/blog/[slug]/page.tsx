@@ -3,6 +3,8 @@ import ArticleContent from "@/components/blog/ArticleContent";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 interface BlogPostPageProps {
   params: {
     slug: string;

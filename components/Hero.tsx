@@ -83,7 +83,7 @@ export default function Hero() {
         return
       }
       setSlides(
-        data.map((slide, idx) => ({
+        data.map((slide: HeroSlide, idx: number) => ({
           ...slide,
           image_url: LOCAL_HERO_IMAGES[idx % LOCAL_HERO_IMAGES.length]
         }))

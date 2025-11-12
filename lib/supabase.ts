@@ -57,15 +57,6 @@ export interface Article {
   profiles?: Profile
 }
 
-export interface Service {
-  id: string
-  name: string
-  description: string
-  image_url: string
-  slug: string
-  created_at: string
-}
-
 export interface Testimonial {
   id: string
   name: string

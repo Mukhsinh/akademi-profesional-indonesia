@@ -39,7 +39,9 @@ export default function ContactInquiriesManager() {
     }
   }
 
-  const handleStatusChange = async (id: string, newStatus: string) => {
+  type InquiryStatus = ContactInquiry['status']
+
+  const handleStatusChange = async (id: string, newStatus: InquiryStatus) => {
     try {
       const { error } = await supabase
         .from('contact_inquiries')
@@ -148,7 +150,7 @@ export default function ContactInquiriesManager() {
                 </button>
                 <select
                   value={inquiry.status}
-                  onChange={(e) => handleStatusChange(inquiry.id, e.target.value)}
+                  onChange={(e) => handleStatusChange(inquiry.id, e.target.value as InquiryStatus)}
                   className="text-xs border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 >
                   <option value="new">Baru</option>
@@ -195,9 +197,9 @@ function InquiryModal({
 }: { 
   inquiry: ContactInquiry
   onClose: () => void
-  onStatusChange: (id: string, status: string) => void
+  onStatusChange: (id: string, status: ContactInquiry['status']) => void
 }) {
-  const [status, setStatus] = useState(inquiry.status)
+  const [status, setStatus] = useState<ContactInquiry['status']>(inquiry.status)
 
   const handleStatusUpdate = () => {
     onStatusChange(inquiry.id, status)
@@ -255,7 +257,7 @@ function InquiryModal({
             </label>
             <select
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => setStatus(e.target.value as ContactInquiry['status'])}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="new">Baru</option>

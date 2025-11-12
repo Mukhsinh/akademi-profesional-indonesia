@@ -82,7 +82,7 @@ export default function ServiceCards() {
         }
 
         setServices(
-          data.map((service, index) => ({
+          data.map((service: Service, index: number) => ({
             ...service,
             image_url: SERVICE_IMAGES[index % SERVICE_IMAGES.length]
           }))

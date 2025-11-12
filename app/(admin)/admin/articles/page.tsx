@@ -2,6 +2,8 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import ArticleList from '@/components/admin/ArticleList'
 
+export const dynamic = 'force-dynamic'
+
 export default async function ArticlesPage() {
   const supabase = await createServerSupabaseClient()
 

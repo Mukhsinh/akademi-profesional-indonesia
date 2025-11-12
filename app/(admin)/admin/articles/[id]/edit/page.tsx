@@ -2,6 +2,8 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { notFound } from 'next/navigation'
 import ArticleForm from '@/components/admin/ArticleForm'
 
+export const dynamic = 'force-dynamic'
+
 interface EditArticlePageProps {
   params: {
     id: string

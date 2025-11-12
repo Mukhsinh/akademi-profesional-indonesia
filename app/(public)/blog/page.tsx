@@ -1,6 +1,8 @@
 import ArticleCard from "@/components/blog/ArticleCard";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Galeri - Akademi Profesional Indonesia",
   description: "Dokumentasi visual dan cerita transformasi digital bersama Akademi Profesional Indonesia."
