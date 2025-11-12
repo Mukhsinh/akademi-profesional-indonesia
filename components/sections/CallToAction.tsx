@@ -31,15 +31,19 @@ export default function CallToAction({
       : "flex flex-col sm:flex-row gap-4";
 
   return (
-    <section className={`${backgroundClassName} py-16`}>
-      <div className={`${containerClassName} ${alignmentClass}`}>
-        <h2 className="text-3xl font-bold mb-4">{title}</h2>
+    <section className={`${backgroundClassName} relative isolate overflow-hidden py-16`}>
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/25 via-transparent to-primary-900/25"
+        aria-hidden="true"
+      />
+      <div className={`${containerClassName} ${alignmentClass} relative z-10`}>
+        <h2 className="text-3xl font-bold mb-4 drop-shadow-lg">{title}</h2>
         {description && (
           <p
             className={
               align === "center"
-                ? "text-xl text-white/90 mb-8 max-w-3xl mx-auto"
-                : "text-xl text-white/90 mb-8"
+                ? "text-xl text-white/95 mb-8 max-w-3xl mx-auto"
+                : "text-xl text-white/95 mb-8"
             }
           >
             {description}

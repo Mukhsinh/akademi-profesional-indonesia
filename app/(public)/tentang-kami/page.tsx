@@ -63,11 +63,11 @@ const VALUES = [
 
 const TEAM = [
   {
-    initials: "DR",
-    name: "Dr. Sarah Wijaya",
-    role: "Direktur Utama",
+    initials: "MH",
+    name: "Mukhsin Hadi, SE, M.Si, CGAA, CPFRM, CSEP, CRP, CPRM, CSCAP, CPABC",
+    role: "Trainer",
     description:
-      "Ph.D. in Information Technology dengan 15+ tahun memimpin transformasi digital dan manajemen proyek teknologi."
+      "8+ tahun mengelola akuntansi manajemen rumah sakit dan 15+ berpengalaman dalam akuntansi sektor publik."
   },
   {
     initials: "MR",
@@ -94,7 +94,7 @@ export default function TentangKamiPage() {
             <div className="space-y-6 text-white">
               <span className="tag-badge">Tentang Kami</span>
               <h1 className="text-4xl sm:text-5xl font-semibold text-gradient">
-                Menyalakan Transformasi Digital Melalui Pendidikan & Teknologi
+                Menyalakan Masa Depan Digital: Saat Kompetensi Bertemu Teknologi
               </h1>
               <p className="text-lg leading-relaxed text-white/80 max-w-2xl">
                 Akademi Profesional Indonesia adalah mitra terpercaya bagi organisasi dan individu yang ingin bertumbuh melalui
@@ -274,9 +274,9 @@ export default function TentangKamiPage() {
                 <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-accent-500 text-white text-2xl font-semibold shadow-lg">
                   {member.initials}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900">{member.name}</h3>
-                <p className="text-primary-600 font-semibold">{member.role}</p>
-                <p className="mt-4 text-sm text-slate-600 leading-relaxed">{member.description}</p>
+                <h3 className="text-lg font-semibold text-slate-900 tracking-tight">{member.name}</h3>
+                <p className="text-sm text-slate-500 mt-1">{member.role}</p>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">{member.description}</p>
               </div>
             ))}
           </div>

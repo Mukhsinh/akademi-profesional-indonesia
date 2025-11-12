@@ -15,6 +15,10 @@ export interface HeroSectionProps {
   backgroundClassName?: string;
   containerClassName?: string;
   spacingClassName?: string;
+  textClassName?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  overlayClassName?: string | null;
   buttons?: HeroButton[];
   extraContent?: ReactNode;
 }
@@ -27,6 +31,10 @@ export default function HeroSection({
   backgroundClassName = "bg-hero-gradient",
   containerClassName = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
   spacingClassName = "py-20",
+  textClassName = "text-white",
+  titleClassName,
+  descriptionClassName,
+  overlayClassName = "bg-gradient-to-br from-black/30 via-black/15 to-primary-900/30",
   buttons,
   extraContent,
 }: HeroSectionProps) {
@@ -35,9 +43,23 @@ export default function HeroSection({
       ? "text-center space-y-6"
       : "text-left space-y-6 max-w-3xl";
 
+  const baseTitleClass = "text-4xl sm:text-5xl font-bold";
+  const resolvedTitleClass = titleClassName ?? "text-gradient drop-shadow-lg";
+  const resolvedDescriptionClass =
+    descriptionClassName ??
+    (align === "center"
+      ? "text-xl text-white/90 max-w-3xl mx-auto"
+      : "text-xl text-white/90");
+
   return (
-    <section className={`${backgroundClassName} text-white ${spacingClassName}`}>
-      <div className={containerClassName}>
+    <section className={`${backgroundClassName} relative isolate overflow-hidden ${textClassName} ${spacingClassName}`}>
+      {overlayClassName !== null && (
+        <div
+          className={`pointer-events-none absolute inset-0 ${overlayClassName} mix-blend-normal`}
+          aria-hidden="true"
+        />
+      )}
+      <div className={`${containerClassName} relative z-10`}>
         <div className={alignmentClass}>
           {eyebrow && (
             <span className="inline-flex items-center px-4 py-1 text-xs font-semibold uppercase tracking-widest rounded-full bg-white/10 backdrop-blur">
@@ -45,10 +67,10 @@ export default function HeroSection({
             </span>
           )}
 
-          <h1 className="text-4xl sm:text-5xl font-bold">{title}</h1>
+          <h1 className={`${baseTitleClass} ${resolvedTitleClass}`}>{title}</h1>
 
           {description && (
-            <p className={align === "center" ? "text-xl text-white/85 max-w-3xl mx-auto" : "text-xl text-white/85"}>
+            <p className={resolvedDescriptionClass}>
               {description}
             </p>
           )}

@@ -40,10 +40,14 @@ const ClockIcon = () => (
 
 export default function JasaAplikasiPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface text-foreground">
       <HeroSection
         title="Jasa Aplikasi Custom"
         description="Solusi aplikasi berbasis web untuk layanan kesehatan, UMKM, dan bisnis digital yang dirancang khusus untuk mengakselerasi kinerja organisasi Anda."
+        textClassName="text-foreground"
+        titleClassName="text-foreground-strong drop-shadow-none"
+        descriptionClassName="text-xl text-muted-strong max-w-3xl mx-auto"
+        overlayClassName={null}
         buttons={[
           {
             href: "/kontak",
@@ -61,14 +65,14 @@ export default function JasaAplikasiPage() {
       />
 
       {/* Applications Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-surface-strong">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="inline-flex items-center px-4 py-1 text-xs font-semibold uppercase tracking-widest rounded-full bg-gradient-to-r from-[#2563eb] to-[#0ea5e9] text-white">
               Berbasis Web Modern
             </span>
-            <h2 className="mt-6 text-3xl sm:text-4xl font-bold text-secondary-900">Solusi Aplikasi Unggulan Kami</h2>
-            <p className="mt-4 text-lg text-secondary-600 max-w-3xl mx-auto">
+            <h2 className="mt-6 text-3xl sm:text-4xl font-bold text-foreground-strong">Solusi Aplikasi Unggulan Kami</h2>
+            <p className="mt-4 text-lg text-muted-strong max-w-3xl mx-auto">
               Setiap aplikasi dikembangkan berbasis web, responsif di berbagai perangkat, dan siap disesuaikan dengan
               proses bisnis Anda.
             </p>
@@ -92,10 +96,10 @@ export default function JasaAplikasiPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 transition-colors group-hover:text-white group-focus-within:text-white group-active:text-white">
+                    <h3 className="text-2xl font-bold text-foreground-strong transition-colors group-hover:text-white group-focus-within:text-white group-active:text-white">
                       {app.title}
                     </h3>
-                    <p className="mt-3 text-secondary-600 transition-colors group-hover:text-white/90 group-focus-within:text-white/90 group-active:text-white/90">
+                    <p className="mt-3 text-muted transition-colors group-hover:text-white/90 group-focus-within:text-white/90 group-active:text-white/90">
                       {app.description}
                     </p>
                   </div>
@@ -104,10 +108,10 @@ export default function JasaAplikasiPage() {
                     {app.points.map((point) => (
                       <li
                         key={point}
-                        className="flex items-center text-secondary-700 transition-colors group-hover:text-white group-focus-within:text-white group-active:text-white"
+                        className="flex items-center text-foreground-soft transition-colors group-hover:text-white group-focus-within:text-white group-active:text-white"
                       >
                         <svg
-                          className="h-5 w-5 mr-3 text-[#0f172a] transition-colors group-hover:text-white group-focus-within:text-white group-active:text-white"
+                          className="h-5 w-5 mr-3 text-primary-600 transition-colors group-hover:text-white group-focus-within:text-white group-active:text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"

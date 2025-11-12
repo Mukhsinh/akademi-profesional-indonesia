@@ -135,7 +135,7 @@ export default function ServiceCards() {
                 className={`group relative overflow-hidden rounded-[28px] border transition-all duration-500 focus:outline-none focus-within:-translate-y-1 focus-within:shadow-[0_45px_90px_-55px_rgba(31,111,255,0.7)] focus-within:ring-4 focus-within:ring-primary-200/35 ${
                   isActive
                     ? 'border-transparent bg-gradient-to-br from-primary-600 to-accent-500 text-white shadow-[0_45px_90px_-55px_rgba(31,111,255,0.8)] scale-[1.02]'
-                    : 'border-slate-100 bg-white shadow-[0_35px_80px_-70px_rgba(15,23,42,0.45)] hover:-translate-y-2'
+                    : 'border-slate-100 bg-white text-foreground shadow-[0_35px_80px_-70px_rgba(15,23,42,0.45)] hover:-translate-y-2'
                 }`}
                 style={{ animationDelay: `${index * 0.08}s` }}
               >
@@ -154,17 +154,17 @@ export default function ServiceCards() {
 
                 <div className="relative px-8 py-8 space-y-6">
                   <div className="space-y-3">
-                    <h3 className={`text-2xl font-semibold ${isActive ? 'text-white' : 'text-slate-900 group-hover:text-primary-600'}`}>
+                    <h3 className={`text-2xl font-semibold ${isActive ? 'text-white' : 'text-foreground-strong group-hover:text-primary-600'}`}>
                       {service.title}
                     </h3>
-                    <p className={`text-base leading-relaxed ${isActive ? 'text-white/80' : 'text-slate-600'}`}>{service.description}</p>
+                    <p className={`text-base leading-relaxed ${isActive ? 'text-white/80' : 'text-muted-strong'}`}>{service.description}</p>
                   </div>
 
                   <ul className="space-y-3">
                     {service.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
-                        className={`flex items-center gap-3 text-sm ${isActive ? 'text-white/85' : 'text-slate-600'}`}
+                        className={`flex items-center gap-3 text-sm ${isActive ? 'text-white/85' : 'text-muted-strong'}`}
                       >
                         <span
                           className={`flex h-9 w-9 items-center justify-center rounded-full border ${

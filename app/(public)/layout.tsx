@@ -7,7 +7,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-surface text-foreground">
         {children}
       </main>
       <ChatWidget />

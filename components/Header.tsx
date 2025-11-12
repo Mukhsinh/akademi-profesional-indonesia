@@ -20,6 +20,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [profile, setProfile] = useState<Profile | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const brandTop = 'Akademi Profesional'
+  const brandBottomBase = 'Indonesia'
+  const [brandBottom, setBrandBottom] = useState('')
 
   useEffect(() => {
     const supabase = createClient()
@@ -41,6 +44,49 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
+    const text = brandBottomBase
+    const typingDelay = 65
+    const erasingDelay = 40
+    const holdFullDelay = 900
+    const holdEmptyDelay = 260
+    let index = 0
+    let direction: 'forward' | 'backward' = 'forward'
+    let timeout: NodeJS.Timeout
+    let isCancelled = false
+
+    const tick = () => {
+      if (isCancelled) return
+      if (direction === 'forward') {
+        index += 1
+        setBrandBottom(text.slice(0, index))
+        if (index >= text.length) {
+          direction = 'backward'
+          timeout = setTimeout(tick, holdFullDelay)
+          return
+        }
+        timeout = setTimeout(tick, typingDelay)
+      } else {
+        index -= 1
+        const next = index > 0 ? text.slice(0, index) : ''
+        setBrandBottom(next)
+        if (index <= 0) {
+          direction = 'forward'
+          timeout = setTimeout(tick, holdEmptyDelay)
+          return
+        }
+        timeout = setTimeout(tick, erasingDelay)
+      }
+    }
+
+    timeout = setTimeout(tick, 120)
+
+    return () => {
+      isCancelled = true
+      clearTimeout(timeout)
+    }
+  }, [brandBottomBase])
+
+  useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 10)
     }
@@ -58,11 +104,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3">
             <div className="relative flex flex-col leading-tight">
-              <span className="text-xs tracking-[0.45em] uppercase text-primary-500 font-semibold">
-                Akademi Profesional
+              <span className="text-xs tracking-[0.45em] uppercase font-semibold animate-spectrum">
+                {brandTop}
               </span>
-              <span className="text-2xl sm:text-3xl font-bold text-slate-900">
-                Indonesia
+              <span
+                className="text-2xl sm:text-3xl font-bold text-foreground-strong"
+                style={{ minWidth: `${brandBottomBase.length}ch` }}
+              >
+                {brandBottom || '\u00A0'}
               </span>
             </div>
           </Link>

@@ -162,10 +162,10 @@ export default function Hero() {
               </svg>
               Go Beyond
             </span>
-            <h1 className="text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] leading-tight font-semibold text-gradient max-w-xl">
+            <h1 className="text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] leading-tight font-semibold text-gradient max-w-xl drop-shadow-[0_12px_32px_rgba(15,23,42,0.35)]">
               {slides[currentSlide].title}
             </h1>
-            <p className="text-lg sm:text-xl leading-relaxed text-white/80 max-w-2xl">
+            <p className="text-lg sm:text-xl leading-relaxed text-white/90 max-w-2xl">
               {slides[currentSlide].subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -183,7 +183,7 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 text-sm text-white/70 max-w-xl pt-4">
+            <div className="grid grid-cols-3 gap-4 text-sm text-white/85 max-w-xl pt-4">
               {[
                 { value: '500+', label: 'Klien & Mitra' },
                 { value: '1000+', label: 'Profesional Dilatih' },

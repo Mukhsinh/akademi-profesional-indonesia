@@ -22,20 +22,24 @@ const CertificationIcon = ({ path }: { path: string }) => (
 
 export default function SertifikasiPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface text-foreground">
       <HeroSection
         title="Sertifikasi Kompetensi Profesional"
         description="Tingkatkan kredibilitas dan kompetensi profesional Anda dengan sertifikasi akuntansi manajemen yang diakui industri dan pemerintah."
+        textClassName="text-foreground"
+        titleClassName="text-foreground-strong drop-shadow-none"
+        descriptionClassName="text-xl text-muted-strong max-w-3xl mx-auto"
+        overlayClassName={null}
       />
 
       {/* Benefits Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">
+            <h2 className="text-3xl font-bold text-foreground-strong mb-4">
               Mengapa Memilih Sertifikasi Kami?
             </h2>
-            <p className="text-lg text-secondary-600">
+            <p className="text-lg text-muted-strong">
               Sertifikat yang diakui industri untuk meningkatkan nilai profesional Anda
             </p>
           </div>
@@ -47,8 +51,8 @@ export default function SertifikasiPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Diakui Industri</h3>
-              <p className="text-secondary-600">Sertifikat yang diakui oleh asosiasi profesi dan industri</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Diakui Industri</h3>
+              <p className="text-muted-strong">Sertifikat yang diakui oleh asosiasi profesi dan industri</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -56,8 +60,8 @@ export default function SertifikasiPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Career Boost</h3>
-              <p className="text-secondary-600">Meningkatkan peluang karir dan gaji yang lebih baik</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Career Boost</h3>
+              <p className="text-muted-strong">Meningkatkan peluang karir dan gaji yang lebih baik</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -65,8 +69,8 @@ export default function SertifikasiPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Materi Terupdate</h3>
-              <p className="text-secondary-600">Kurikulum yang selalu mengikuti perkembangan industri</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Materi Terupdate</h3>
+              <p className="text-muted-strong">Kurikulum yang selalu mengikuti perkembangan industri</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -74,21 +78,21 @@ export default function SertifikasiPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Mentor Expert</h3>
-              <p className="text-secondary-600">Dibimbing oleh praktisi berpengalaman di bidangnya</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Mentor Expert</h3>
+              <p className="text-muted-strong">Dibimbing oleh praktisi berpengalaman di bidangnya</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Certification Programs Section */}
-      <section className="py-16 bg-blue-50">
+      <section className="py-16 bg-surface-strong">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">
+            <h2 className="text-3xl font-bold text-foreground-strong mb-4">
               Program Sertifikasi Unggulan
             </h2>
-            <p className="text-lg text-secondary-600">
+            <p className="text-lg text-muted-strong">
               Pilih program sertifikasi yang sesuai dengan jalur karir Anda
             </p>
           </div>
@@ -149,16 +153,16 @@ export default function SertifikasiPage() {
                     <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center shadow-inner group-hover:bg-white/20">
                       {program.icon}
                     </div>
-                    <h3 className="text-2xl font-bold text-secondary-900 group-hover:text-white transition-colors">
+                    <h3 className="text-2xl font-bold text-foreground-strong group-hover:text-white transition-colors">
                       {program.title}
                     </h3>
                   </div>
-                  <p className="text-secondary-600 group-hover:text-white/90 transition-colors">
+                  <p className="text-muted-strong group-hover:text-white/90 transition-colors">
                     {program.description}
                   </p>
                   <ul className="space-y-3">
                     {program.features.map((feature) => (
-                      <li key={feature} className="flex items-center text-secondary-700 group-hover:text-white transition-colors">
+                      <li key={feature} className="flex items-center text-foreground-soft group-hover:text-white transition-colors">
                         <svg className="h-5 w-5 mr-3 text-primary-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -166,7 +170,7 @@ export default function SertifikasiPage() {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-auto flex items-center justify-between pt-4 border-t border-secondary-100 group-hover:border-white/40">
+                  <div className="mt-auto flex items-center justify-between pt-4 border-t border-muted-soft/40 group-hover:border-white/40">
                     <span className="text-2xl font-bold text-primary-600 group-hover:text-white transition-colors">
                       {program.price}
                     </span>
@@ -191,10 +195,10 @@ export default function SertifikasiPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">
+            <h2 className="text-3xl font-bold text-foreground-strong mb-4">
               Proses Sertifikasi
             </h2>
-            <p className="text-lg text-secondary-600">
+            <p className="text-lg text-muted-strong">
               Langkah-langkah untuk mendapatkan sertifikat kompetensi profesional
             </p>
           </div>
@@ -204,48 +208,49 @@ export default function SertifikasiPage() {
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 1
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Pendaftaran</h3>
-              <p className="text-secondary-600">Daftar program yang sesuai dengan kebutuhan Anda</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Pendaftaran</h3>
+              <p className="text-muted-strong">Daftar program yang sesuai dengan kebutuhan Anda</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 2
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Pre-Assessment</h3>
-              <p className="text-secondary-600">Evaluasi kemampuan awal untuk penyesuaian kurikulum</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Pre-Assessment</h3>
+              <p className="text-muted-strong">Evaluasi kemampuan awal untuk penyesuaian kurikulum</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 3
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Pelatihan</h3>
-              <p className="text-secondary-600">Program pembelajaran intensif dengan mentor expert</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Pelatihan</h3>
+              <p className="text-muted-strong">Program pembelajaran intensif dengan mentor expert</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 4
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Ujian</h3>
-              <p className="text-secondary-600">Tes kompetensi untuk mengukur penguasaan materi</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Ujian</h3>
+              <p className="text-muted-strong">Tes kompetensi untuk mengukur penguasaan materi</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 5
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">Sertifikat</h3>
-              <p className="text-secondary-600">Penerbitan sertifikat resmi yang diakui industri</p>
+              <h3 className="text-lg font-semibold text-foreground-strong mb-2">Sertifikat</h3>
+              <p className="text-muted-strong">Penerbitan sertifikat resmi yang diakui industri</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-hero-gradient text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
+      <section className="py-16 bg-hero-gradient text-white relative isolate overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/25 via-transparent to-primary-900/25" aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl font-bold mb-4 drop-shadow-lg">
             Tingkatkan Kredibilitas Profesional Anda
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-white/95 mb-8 max-w-3xl mx-auto">
             Dapatkan sertifikat kompetensi yang diakui industri dan buka peluang karir yang lebih luas 
             dengan program sertifikasi profesional kami.
           </p>
