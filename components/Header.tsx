@@ -1,0 +1,194 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { createClient } from '@/lib/supabase'
+import { Profile } from '@/lib/supabase'
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [profile, setProfile] = useState<Profile | null>(null)
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (user) {
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single()
+        
+        setProfile(profileData)
+      }
+    }
+
+    getProfile()
+  }, [])
+
+  return (
+    <header className="bg-white shadow-soft sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex items-center">
+              <div className="text-3xl font-bold">
+                <span className="bg-hero-gradient bg-clip-text text-transparent">
+                  API
+                </span>
+              </div>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8">
+            <Link 
+              href="/tentang-kami" 
+              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Tentang Kami
+            </Link>
+            <div className="relative group">
+              <button className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors flex items-center">
+                Pelatihan
+                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-large opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="py-1">
+                  <Link href="/pelatihan" className="block px-4 py-2 text-sm text-secondary-700 hover:bg-primary-50 hover:text-primary-600">
+                    Pelatihan Online
+                  </Link>
+                  <Link href="/pelatihan" className="block px-4 py-2 text-sm text-secondary-700 hover:bg-primary-50 hover:text-primary-600">
+                    Pelatihan Offline
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Link 
+              href="/jasa-aplikasi" 
+              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Jasa Aplikasi
+            </Link>
+            <Link 
+              href="/sertifikasi" 
+              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Sertifikasi
+            </Link>
+            <Link 
+              href="/blog" 
+              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Blog
+            </Link>
+            <Link 
+              href="/kontak" 
+              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Kontak
+            </Link>
+            {profile?.role === 'admin' && (
+              <Link 
+                href="/admin" 
+                className="text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-3 py-2 text-sm font-medium transition-colors rounded-md"
+              >
+                Admin
+              </Link>
+            )}
+          </nav>
+
+          {/* Search Icon */}
+          <div className="hidden md:flex items-center">
+            <button className="text-secondary-700 hover:text-primary-600 p-2">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-secondary-700 hover:text-primary-600 p-2"
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+              <Link 
+                href="/tentang-kami" 
+                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Tentang Kami
+              </Link>
+              <Link 
+                href="/pelatihan" 
+                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Pelatihan
+              </Link>
+              <Link 
+                href="/jasa-aplikasi" 
+                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Jasa Aplikasi
+              </Link>
+              <Link 
+                href="/sertifikasi" 
+                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Sertifikasi
+              </Link>
+              <Link 
+                href="/blog" 
+                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link 
+                href="/kontak" 
+                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Kontak
+              </Link>
+              {profile?.role === 'admin' && (
+                <Link 
+                  href="/admin" 
+                  className="text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 block px-3 py-2 text-base font-medium rounded-md mx-3 my-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Admin Dashboard
+                </Link>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  )
+}
