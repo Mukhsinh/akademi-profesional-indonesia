@@ -1,61 +1,48 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header";
-import ChatWidget from "@/components/ChatWidget";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
-    default: "Akademi Profesional Indonesia - Mitra Transformasi Digital Profesional",
-    template: "%s | Akademi Profesional Indonesia"
+    default: 'PT. Akademi Profesional Indonesia - Transformasi Digital Rumah Sakit',
+    template: '%s | PT. Akademi Profesional Indonesia',
   },
-  description: "Akademi Profesional Indonesia menyediakan pelatihan online & offline, jasa aplikasi custom untuk UMKM & Corporate, dan sertifikasi kompetensi profesional akuntansi manajemen.",
+  description: 'Platform terintegrasi untuk efisiensi operasional dan peningkatan kualitas layanan kesehatan melalui teknologi mutakhir dan pengembangan SDM profesional.',
   keywords: [
-    "pelatihan profesional",
-    "aplikasi custom",
-    "sertifikasi akuntansi",
-    "transformasi digital",
-    "UMKM",
-    "corporate training",
-    "kompetensi profesional",
-    "akademi indonesia"
+    'rumah sakit',
+    'manajemen rumah sakit',
+    'sistem informasi kesehatan',
+    'pelatihan medis',
+    'akreditasi rumah sakit',
+    'transformasi digital',
+    'clinical pathway',
+    'manajemen risiko',
+    'unit cost',
+    'MMPI-2',
   ],
-  authors: [{ name: "Akademi Profesional Indonesia" }],
-  creator: "Akademi Profesional Indonesia",
-  publisher: "Akademi Profesional Indonesia",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://akademiprofesional.id'),
-  alternates: {
-    canonical: '/',
-  },
+  authors: [{ name: 'PT. Akademi Profesional Indonesia' }],
+  creator: 'PT. Akademi Profesional Indonesia',
+  publisher: 'PT. Akademi Profesional Indonesia',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://akademiprofesional.co.id'),
   openGraph: {
     type: 'website',
     locale: 'id_ID',
     url: '/',
-    siteName: 'Akademi Profesional Indonesia',
-    title: 'Akademi Profesional Indonesia - Mitra Transformasi Digital Profesional',
-    description: 'Pelatihan profesional, jasa aplikasi custom, dan sertifikasi kompetensi untuk UMKM, Corporate, dan Lembaga Pemerintah.',
-    images: [
-      {
-        url: '/images/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Akademi Profesional Indonesia - Transformasi Digital Profesional',
-      },
-    ],
+    title: 'PT. Akademi Profesional Indonesia - Transformasi Digital Rumah Sakit',
+    description: 'Platform terintegrasi untuk efisiensi operasional dan peningkatan kualitas layanan kesehatan melalui teknologi mutakhir dan pengembangan SDM profesional.',
+    siteName: 'PT. Akademi Profesional Indonesia',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Akademi Profesional Indonesia - Mitra Transformasi Digital Profesional',
-    description: 'Pelatihan profesional, jasa aplikasi custom, dan sertifikasi kompetensi untuk UMKM, Corporate, dan Lembaga Pemerintah.',
-    images: ['/images/og-image.jpg'],
-    creator: '@akademiprofesional',
+    title: 'PT. Akademi Profesional Indonesia - Transformasi Digital Rumah Sakit',
+    description: 'Platform terintegrasi untuk efisiensi operasional dan peningkatan kualitas layanan kesehatan melalui teknologi mutakhir dan pengembangan SDM profesional.',
   },
   robots: {
     index: true,
@@ -69,79 +56,27 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    // Add your verification codes here when available
+    // google: 'your-google-verification-code',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Akademi Profesional Indonesia',
-    alternateName: 'API',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://akademiprofesional.id',
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://akademiprofesional.id'}/images/logo.png`,
-    description: 'Akademi Profesional Indonesia menyediakan pelatihan online & offline, jasa aplikasi custom untuk UMKM & Corporate, dan sertifikasi kompetensi profesional akuntansi manajemen.',
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'ID',
-      addressLocality: 'Jakarta',
-    },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+62-812-3456-7890',
-      contactType: 'customer service',
-      availableLanguage: 'Indonesian',
-    },
-    sameAs: [
-      'https://www.linkedin.com/company/akademi-profesional-indonesia',
-      'https://www.instagram.com/akademiprofesional',
-      'https://www.facebook.com/akademiprofesional',
-    ],
-    service: [
-      {
-        '@type': 'Service',
-        name: 'Pelatihan Online & Offline',
-        description: 'Program pelatihan komprehensif untuk meningkatkan keterampilan profesional',
-      },
-      {
-        '@type': 'Service',
-        name: 'Jasa Aplikasi Custom',
-        description: 'Solusi teknologi terdepan untuk UMKM, Corporate, dan Lembaga Pemerintah',
-      },
-      {
-        '@type': 'Service',
-        name: 'Sertifikasi Kompetensi',
-        description: 'Program sertifikasi profesional akuntansi manajemen yang diakui industri',
-      },
-    ],
-  };
-
   return (
-    <html lang="id" className="scroll-smooth">
+    <html lang="id" className="light">
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#2563eb" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <ChatWidget />
+      <body className={`${inter.variable} font-sans antialiased`}>
+        {children}
       </body>
     </html>
-  );
+  )
 }

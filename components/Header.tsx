@@ -1,194 +1,171 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { createClient } from '@/lib/supabase'
-import { Profile } from '@/lib/supabase'
+import { Info, Grid3x3, GraduationCap, FileText, Mail, Menu, X, Building2, Calendar } from 'lucide-react'
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [profile, setProfile] = useState<Profile | null>(null)
-
-  useEffect(() => {
-    const getProfile = async () => {
-      const supabase = createClient()
-      const { data: { user } } = await supabase.auth.getUser()
-      
-      if (user) {
-        const { data: profileData } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', user.id)
-          .single()
-        
-        setProfile(profileData)
-      }
-    }
-
-    getProfile()
-  }, [])
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white shadow-soft sticky top-0 z-50">
+    <header className="w-full bg-white/98 backdrop-blur-xl border-b border-gray-200/60 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <div className="text-3xl font-bold">
-                <span className="bg-hero-gradient bg-clip-text text-transparent">
-                  API
-                </span>
+          <Link href="/" className="flex items-center gap-3 group flex-shrink-0 hover:opacity-90 transition-opacity duration-200">
+            <div className="relative">
+              <div className="absolute inset-0 bg-emerald-600 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-all duration-300"></div>
+              <div className="relative bg-gradient-to-br from-emerald-600 via-emerald-600 to-emerald-700 p-2.5 rounded-xl shadow-md group-hover:shadow-lg transition-all duration-200">
+                <Building2 className="w-6 h-6 text-white" strokeWidth={2.5} />
               </div>
-            </Link>
-          </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-gray-900 text-[15px] font-bold leading-tight tracking-tight">
+                PT. Akademi
+              </span>
+              <span className="text-gray-500 text-[10.5px] font-medium leading-none tracking-wide">
+                Profesional Indonesia
+              </span>
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden lg:flex items-center gap-1">
             <Link 
-              href="/tentang-kami" 
-              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+              href="/tentang" 
+              className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-gray-700 hover:text-emerald-600 transition-all duration-200 font-medium text-[14px]"
             >
-              Tentang Kami
+              <div className="absolute inset-0 bg-emerald-50/0 group-hover:bg-emerald-50/80 rounded-xl transition-all duration-200"></div>
+              <Info className="w-[17px] h-[17px] relative z-10" strokeWidth={2.5} />
+              <span className="relative z-10">Tentang</span>
             </Link>
-            <div className="relative group">
-              <button className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors flex items-center">
-                Pelatihan
-                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-large opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="py-1">
-                  <Link href="/pelatihan" className="block px-4 py-2 text-sm text-secondary-700 hover:bg-primary-50 hover:text-primary-600">
-                    Pelatihan Online
-                  </Link>
-                  <Link href="/pelatihan" className="block px-4 py-2 text-sm text-secondary-700 hover:bg-primary-50 hover:text-primary-600">
-                    Pelatihan Offline
-                  </Link>
-                </div>
-              </div>
-            </div>
+            
             <Link 
-              href="/jasa-aplikasi" 
-              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+              href="/layanan" 
+              className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-gray-700 hover:text-emerald-600 transition-all duration-200 font-medium text-[14px]"
             >
-              Jasa Aplikasi
+              <div className="absolute inset-0 bg-emerald-50/0 group-hover:bg-emerald-50/80 rounded-xl transition-all duration-200"></div>
+              <Grid3x3 className="w-[17px] h-[17px] relative z-10" strokeWidth={2.5} />
+              <span className="relative z-10">Aplikasi</span>
             </Link>
+            
             <Link 
-              href="/sertifikasi" 
-              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+              href="/pelatihan" 
+              className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-gray-700 hover:text-emerald-600 transition-all duration-200 font-medium text-[14px]"
             >
-              Sertifikasi
+              <div className="absolute inset-0 bg-emerald-50/0 group-hover:bg-emerald-50/80 rounded-xl transition-all duration-200"></div>
+              <GraduationCap className="w-[17px] h-[17px] relative z-10" strokeWidth={2.5} />
+              <span className="relative z-10">Pelatihan</span>
             </Link>
+            
             <Link 
-              href="/blog" 
-              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+              href="/pelatihan/jadwal" 
+              className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-gray-700 hover:text-emerald-600 transition-all duration-200 font-medium text-[14px]"
             >
-              Blog
+              <div className="absolute inset-0 bg-emerald-50/0 group-hover:bg-emerald-50/80 rounded-xl transition-all duration-200"></div>
+              <Calendar className="w-[17px] h-[17px] relative z-10" strokeWidth={2.5} />
+              <span className="relative z-10">Jadwal</span>
             </Link>
+            
             <Link 
-              href="/kontak" 
-              className="text-secondary-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors"
+              href="/artikel" 
+              className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-gray-700 hover:text-emerald-600 transition-all duration-200 font-medium text-[14px]"
             >
-              Kontak
+              <div className="absolute inset-0 bg-emerald-50/0 group-hover:bg-emerald-50/80 rounded-xl transition-all duration-200"></div>
+              <FileText className="w-[17px] h-[17px] relative z-10" strokeWidth={2.5} />
+              <span className="relative z-10">Artikel</span>
             </Link>
-            {profile?.role === 'admin' && (
-              <Link 
-                href="/admin" 
-                className="text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-3 py-2 text-sm font-medium transition-colors rounded-md"
-              >
-                Admin
-              </Link>
-            )}
           </nav>
 
-          {/* Search Icon */}
-          <div className="hidden md:flex items-center">
-            <button className="text-secondary-700 hover:text-primary-600 p-2">
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-secondary-700 hover:text-primary-600 p-2"
+          {/* Right Side - CTA Button */}
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+            <Link 
+              href="/kontak" 
+              className="relative group flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-xl font-semibold text-[14px] shadow-md shadow-emerald-600/20 hover:shadow-lg hover:shadow-emerald-600/30 transition-all duration-200 transform hover:scale-[1.02] overflow-hidden"
             >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-emerald-800 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+              <Mail className="w-[17px] h-[17px] relative z-10" strokeWidth={2.5} />
+              <span className="relative z-10">Hubungi Kami</span>
+            </Link>
           </div>
-        </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-              <Link 
-                href="/tentang-kami" 
-                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Tentang Kami
-              </Link>
-              <Link 
-                href="/pelatihan" 
-                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Pelatihan
-              </Link>
-              <Link 
-                href="/jasa-aplikasi" 
-                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Jasa Aplikasi
-              </Link>
-              <Link 
-                href="/sertifikasi" 
-                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sertifikasi
-              </Link>
-              <Link 
-                href="/blog" 
-                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Blog
-              </Link>
+          {/* Mobile Menu Button */}
+          <button 
+            className="lg:hidden p-2.5 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" strokeWidth={2.5} />
+            ) : (
+              <Menu className="w-6 h-6" strokeWidth={2.5} />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t border-gray-200/60 bg-white/98 backdrop-blur-xl">
+          <nav className="px-4 py-4 space-y-1">
+            <Link 
+              href="/tentang" 
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:text-emerald-600 hover:bg-emerald-50/80 active:bg-emerald-100/70 transition-all duration-200 font-medium text-[14px]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Info className="w-5 h-5" strokeWidth={2.5} />
+              <span>Tentang</span>
+            </Link>
+            
+            <Link 
+              href="/layanan" 
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:text-emerald-600 hover:bg-emerald-50/80 active:bg-emerald-100/70 transition-all duration-200 font-medium text-[14px]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Grid3x3 className="w-5 h-5" strokeWidth={2.5} />
+              <span>Aplikasi</span>
+            </Link>
+            
+            <Link 
+              href="/pelatihan" 
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:text-emerald-600 hover:bg-emerald-50/80 active:bg-emerald-100/70 transition-all duration-200 font-medium text-[14px]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <GraduationCap className="w-5 h-5" strokeWidth={2.5} />
+              <span>Pelatihan</span>
+            </Link>
+            
+            <Link 
+              href="/pelatihan/jadwal" 
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:text-emerald-600 hover:bg-emerald-50/80 active:bg-emerald-100/70 transition-all duration-200 font-medium text-[14px]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Calendar className="w-5 h-5" strokeWidth={2.5} />
+              <span>Jadwal</span>
+            </Link>
+            
+            <Link 
+              href="/artikel" 
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:text-emerald-600 hover:bg-emerald-50/80 active:bg-emerald-100/70 transition-all duration-200 font-medium text-[14px]"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <FileText className="w-5 h-5" strokeWidth={2.5} />
+              <span>Artikel</span>
+            </Link>
+
+            <div className="pt-4 mt-4 border-t border-gray-200/60">
               <Link 
                 href="/kontak" 
-                className="text-secondary-700 hover:text-primary-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:from-emerald-700 hover:to-emerald-800 active:from-emerald-800 active:to-emerald-900 rounded-xl font-semibold text-[14px] shadow-md shadow-emerald-600/20 transition-all duration-200"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Kontak
+                <Mail className="w-[17px] h-[17px]" strokeWidth={2.5} />
+                <span>Hubungi Kami</span>
               </Link>
-              {profile?.role === 'admin' && (
-                <Link 
-                  href="/admin" 
-                  className="text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 block px-3 py-2 text-base font-medium rounded-md mx-3 my-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Admin Dashboard
-                </Link>
-              )}
             </div>
-          </div>
-        )}
-      </div>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
