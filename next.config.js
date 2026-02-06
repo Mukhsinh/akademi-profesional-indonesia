@@ -20,6 +20,8 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Empty turbopack config to silence warning
+  turbopack: {},
 }
 
 module.exports = nextConfig
