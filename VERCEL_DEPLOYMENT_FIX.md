@@ -1,41 +1,40 @@
-# Perbaikan Deployment Vercel
+# Perbaikan Error 404 Deployment Vercel
 
 ## Masalah
-Error deployment Vercel:
-```
-npm error code ENOENT
-npm error syscall open
-npm error path /vercel/path0/package.json
-npm error errno -2
-npm error enoent Could not read package.json
-```
+Setelah deployment ke Vercel, website menampilkan error **404: NOT_FOUND**.
 
 ## Penyebab
-Struktur repository memiliki project Next.js di dalam subfolder `akademi-profesional-indonesia/`, bukan di root repository. Vercel mencari `package.json` di root dan tidak menemukannya.
+Struktur proyek memiliki duplikasi folder:
+- Folder `akademi-profesional-indonesia/` berisi proyek Next.js lengkap dengan `app/page.tsx`
+- Folder `app/` di root hanya berisi `layout.tsx` tanpa `page.tsx`
+- Vercel membaca struktur di root workspace, bukan di subfolder `akademi-profesional-indonesia/`
 
 ## Solusi
-Menambahkan konfigurasi `rootDirectory` di file `vercel.json` yang berada di root repository:
+Memindahkan semua file dari subfolder `akademi-profesional-indonesia/` ke root workspace:
 
-```json
-{
-  "rootDirectory": "akademi-profesional-indonesia",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "framework": "nextjs"
-}
+```bash
+Copy-Item -Path "akademi-profesional-indonesia\*" -Destination "." -Recurse -Force -Exclude @('.git', 'node_modules', '.next')
 ```
 
-## File yang Diubah
-- ✅ `vercel.json` (di root repository) - Updated dengan `rootDirectory` config
-- ✅ Semua perubahan sudah di-commit dan di-push ke GitHub
+## Hasil
+✅ Build berhasil dengan 18 halaman statis
+✅ Semua route tersedia:
+- `/` (Homepage)
+- `/artikel`
+- `/kontak`
+- `/layanan` (dan semua sub-layanan)
+- `/layanan-aplikasi`
+- `/pelatihan` (dan jadwal)
+- `/tentang`
+- `/sitemap.xml`
 
-## Langkah Selanjutnya
-1. Vercel akan otomatis trigger deployment baru setelah push ke GitHub
-2. Atau manual trigger redeploy di Vercel dashboard
-3. Deployment seharusnya berhasil karena Vercel sekarang tahu lokasi project yang benar
+## Langkah Deployment
+1. Push perubahan ke GitHub: `git push origin main`
+2. Vercel akan otomatis mendeteksi perubahan dan melakukan re-deploy
+3. Website akan berfungsi normal tanpa error 404
 
-## Verifikasi
-Setelah deployment, cek:
-- ✅ Build berhasil tanpa error ENOENT
-- ✅ Website dapat diakses
-- ✅ Semua fitur berfungsi normal
+## Catatan
+- Folder `akademi-profesional-indonesia/` masih ada di repository sebagai backup
+- Konfigurasi `vercel.json` tetap standar tanpa perlu modifikasi khusus
+- Build time: ~30 detik
+- Semua halaman di-render sebagai static content untuk performa optimal
