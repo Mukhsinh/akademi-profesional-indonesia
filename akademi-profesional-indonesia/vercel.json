@@ -3,6 +3,7 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
+  "rootDirectory": "akademi-profesional-indonesia",
   "regions": ["sin1"],
   "headers": [
     {
