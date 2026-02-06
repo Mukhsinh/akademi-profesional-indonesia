@@ -1,9 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase'
 import { Service } from '@/lib/supabase'
 
 const SERVICE_IMAGES = [
@@ -55,48 +54,9 @@ const FALLBACK_SERVICES: Service[] = [
 ]
 
 export default function ServiceCards() {
-  const [services, setServices] = useState<Service[]>([])
+  const [services, setServices] = useState<Service[]>(FALLBACK_SERVICES)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [loading, setLoading] = useState(true)
-
-  const supabase = createClient()
-
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        if (!supabase) {
-          setServices(FALLBACK_SERVICES)
-          return
-        }
-
-        const { data, error } = await supabase
-          .from('services')
-          .select('*')
-          .eq('is_active', true)
-          .order('order_index', { ascending: true })
-
-        if (error || !data || data.length === 0) {
-          console.error('Error fetching services:', error)
-          setServices(FALLBACK_SERVICES)
-          return
-        }
-
-        setServices(
-          data.map((service: Service, index: number) => ({
-            ...service,
-            image_url: SERVICE_IMAGES[index % SERVICE_IMAGES.length]
-          }))
-        )
-      } catch (err) {
-        console.error('Error fetching services:', err)
-        setServices(FALLBACK_SERVICES)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchServices()
-  }, [supabase])
+  const [loading, setLoading] = useState(false)
 
   if (loading) {
     return (

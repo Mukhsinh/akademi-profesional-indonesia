@@ -14,7 +14,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   trailingSlash: false,
   compress: true,
