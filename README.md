@@ -1,167 +1,73 @@
-# PT. Akademi Profesional Indonesia
+# PT. Akademi Profesional Indonesia - Website
 
-Website resmi PT. Akademi Profesional Indonesia - Platform terintegrasi untuk transformasi digital dan pelatihan strategis manajemen rumah sakit.
+## ⚠️ PENTING: Perbaikan Error 404 di Vercel
 
-## 🚀 Fitur Utama
+Website ini mengalami error **404: NOT_FOUND** karena struktur folder yang salah. Proyek Next.js yang lengkap ada di folder `akademi-profesional-indonesia/`.
 
-- 🏥 **Aplikasi Manajemen Rumah Sakit** - Sistem terintegrasi untuk operasional rumah sakit
-- 👨‍⚕️ **Pelatihan Profesional** - Program pengembangan kompetensi SDM kesehatan
-- 📊 **Konsultasi Strategis** - Pendampingan manajemen dan akreditasi
-- 📱 **Responsive Design** - Optimal di semua perangkat
-- ⚡ **Performance Optimized** - Built with Next.js 16 dan React 18
-- 🎨 **Modern UI/UX** - Desain profesional dengan Tailwind CSS
+### Solusi Cepat (5 Menit)
 
-## 🛠️ Tech Stack
+**Opsi 1: Konfigurasi di Vercel Dashboard** ✅ RECOMMENDED
 
-- **Framework**: Next.js 16.1.6
-- **UI Library**: React 18.3.1
-- **Styling**: Tailwind CSS 3.4.3
-- **Language**: TypeScript 5
-- **Icons**: Lucide React
-- **PDF Generation**: jsPDF
+1. Login ke https://vercel.com/dashboard
+2. Pilih project Anda
+3. Klik **Settings** → **General**
+4. Scroll ke **Root Directory**
+5. Klik **Edit** dan masukkan: `akademi-profesional-indonesia`
+6. Klik **Save**
+7. Kembali ke **Deployments** → Klik **Redeploy**
 
-## 📋 Prerequisites
+**Opsi 2: Jalankan Script Otomatis**
 
-- Node.js 18.0.0 atau lebih tinggi
-- npm 9.0.0 atau lebih tinggi
+```powershell
+# Jalankan script ini untuk memindahkan file ke root
+powershell -ExecutionPolicy Bypass -File move-to-root.ps1
+```
 
-## 🔧 Installation
+Script akan:
+- Backup code Anda
+- Pindahkan semua file dari subfolder ke root
+- Commit dan push otomatis
+
+### Verifikasi
+
+Setelah deployment selesai, cek:
+- ✅ Homepage muncul (tidak 404)
+- ✅ Menu navigasi berfungsi
+- ✅ Halaman layanan, pelatihan, kontak dapat diakses
+
+## 📁 Struktur Proyek
+
+```
+.
+├── akademi-profesional-indonesia/  ← Proyek lengkap ada di sini
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── public/
+│   ├── package.json
+│   └── next.config.js
+├── app/                            ← Folder lama (tidak lengkap)
+├── components/                     ← Folder lama (tidak lengkap)
+└── ...
+```
+
+## 🚀 Quick Start (Development)
 
 ```bash
-# Clone repository
-git clone <repository-url>
 cd akademi-profesional-indonesia
-
-# Install dependencies
 npm install
-
-# Copy environment variables
-cp .env.example .env.local
-
-# Run development server
 npm run dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
+Buka http://localhost:3000
 
-## 📁 Project Structure
+## 📚 Dokumentasi Lengkap
 
-```
-akademi-profesional-indonesia/
-├── app/                      # Next.js App Router
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Homepage
-│   ├── artikel/             # Artikel pages
-│   ├── kontak/              # Contact page
-│   ├── layanan/             # Service pages
-│   │   ├── clinical-pathway/
-│   │   ├── manajemen-pengaduan/
-│   │   ├── manajemen-risiko/
-│   │   ├── manajemen-strategis/
-│   │   ├── manajemen-survey-kepuasan/
-│   │   ├── mmpi-2/
-│   │   └── unit-cost/
-│   ├── pelatihan/           # Training pages
-│   │   └── jadwal/
-│   └── tentang/             # About page
-├── components/              # React components
-│   ├── Header.tsx
-│   ├── Hero.tsx
-│   ├── Services.tsx
-│   ├── Footer.tsx
-│   └── ...
-├── lib/                     # Utilities & helpers
-│   ├── generateProposalPDF.ts
-│   ├── generateTrainingBooklet.ts
-│   ├── timelineData.ts
-│   └── trainingData.ts
-├── public/                  # Static assets
-└── ...config files
-```
+- [VERCEL_FIX_INSTRUCTIONS.md](./VERCEL_FIX_INSTRUCTIONS.md) - Panduan detail perbaikan deployment
+- [akademi-profesional-indonesia/README.md](./akademi-profesional-indonesia/README.md) - Dokumentasi proyek lengkap
 
-## 🚀 Deployment ke Vercel
+## 📞 Support
 
-### Method 1: Deploy via Vercel Dashboard (Recommended)
-
-1. Push code ke GitHub repository
-2. Buka [vercel.com](https://vercel.com)
-3. Login dan klik "Add New Project"
-4. Import repository GitHub Anda
-5. Vercel akan otomatis mendeteksi Next.js
-6. Klik "Deploy"
-
-### Method 2: Deploy via Vercel CLI
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login ke Vercel
-vercel login
-
-# Deploy
-vercel
-
-# Deploy to production
-vercel --prod
-```
-
-### Environment Variables di Vercel
-
-Tambahkan environment variables berikut di Vercel Dashboard:
-
-- `NEXT_PUBLIC_SITE_URL`: URL production website
-- `NEXT_PUBLIC_WHATSAPP_NUMBER`: Nomor WhatsApp untuk kontak
-- `NEXT_PUBLIC_CONTACT_EMAIL`: Email kontak
-
-## 📜 Available Scripts
-
-```bash
-# Development
-npm run dev          # Start development server
-
-# Production
-npm run build        # Build for production
-npm run start        # Start production server
-
-# Code Quality
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix ESLint errors
-npm run type-check   # Check TypeScript types
-
-# Maintenance
-npm run clean        # Clean build cache
-```
-
-## 🔍 Build Optimization
-
-Aplikasi ini sudah dioptimasi untuk production dengan:
-
-- ✅ Image optimization dengan Next.js Image
-- ✅ Code splitting otomatis
-- ✅ Compression enabled
-- ✅ React Strict Mode
-- ✅ SWC minification
-- ✅ Security headers
-- ✅ SEO optimization
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 📄 License
-
-© 2024 PT. Akademi Profesional Indonesia. All rights reserved.
-
-## 📞 Contact
-
-- Website: [akademiprofesional.co.id](https://akademiprofesional.co.id)
-- Email: info@akademiprofesional.co.id
-- WhatsApp: +62 812-3456-7890
-
-## 🤝 Contributing
-
-Untuk kontribusi internal, silakan hubungi tim development.
+Jika masih ada masalah, hubungi:
+- Email: support@akademiprofesional.co.id
+- WhatsApp: +62 857-2611-2001
