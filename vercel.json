@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd akademi-profesional-indonesia && npm run build",
+  "devCommand": "cd akademi-profesional-indonesia && npm run dev",
+  "installCommand": "cd akademi-profesional-indonesia && npm install",
+  "framework": "nextjs",
+  "outputDirectory": "akademi-profesional-indonesia/.next"
+}
