@@ -69,3 +69,6 @@ REBUILD_*.md
 
 # Keep only README.md
 !README.md
+
+# Backup folder
+/akademi-profesional-indonesia/
